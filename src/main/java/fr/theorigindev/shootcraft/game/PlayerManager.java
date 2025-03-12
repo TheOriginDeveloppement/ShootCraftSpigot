@@ -70,8 +70,11 @@ public class PlayerManager {
     }
 
     public void finish() {
-        for (Player player : players){
+        MessageUtils.broadcast(MessageUtils.getRankingMessage(getRanking()));
+
+        for (Player player : GameConfig.getInstance().getGameWorld().getPlayers()){
             player.teleport(GameConfig.getInstance().getSpawnWorld().getSpawnLocation());
+            removePlayer(player);
         }
     }
 

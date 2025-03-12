@@ -88,7 +88,6 @@ public class GameLoop {
 
     private void handleFinishedState() {
         MessageUtils.broadcast("§aLa partie est terminée !");
-        MessageUtils.broadcast(MessageUtils.getRankingMessage(gameManager.getPlayerManager().getRanking()));
         gameManager.setGameState(GameState.WAITING);
         countdownSeconds = GameConfig.getInstance().getCountdown();
         gameTimeSeconds = GameConfig.getInstance().getTimer();
