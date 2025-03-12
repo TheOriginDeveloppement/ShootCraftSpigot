@@ -38,6 +38,18 @@ public class GameManager {
         return playerManager.getPlayers().size() < 2;
     }
 
+    public PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public Arena getArena() {
+        return arena;
+    }
+
     public void endGame(){
         gameState = GameState.FINISHED;
         //aff le classement

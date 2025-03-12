@@ -5,6 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private Location min;
@@ -31,6 +32,13 @@ public class Arena {
         }
     }
 
+    public void randomTeleport(Player player) {
+        Random rand = new Random();
+        int[] randomPos = positions.get(rand.nextInt(positions.size()));
+
+        player.teleport(new Location(world, randomPos[0], randomPos[1], randomPos[2]));
+    }
+
     public boolean isInArena(Location loc) {
         if (loc.getWorld() != world) {
             return false;
@@ -44,4 +52,5 @@ public class Arena {
                 y >= min.getY() && y <= max.getY() &&
                 z >= min.getZ() && z <= max.getZ();
     }
+
 }

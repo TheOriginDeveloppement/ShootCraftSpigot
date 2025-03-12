@@ -1,6 +1,9 @@
 package fr.theorigindev.shootcraft.game;
 
+import fr.theorigindev.shootcraft.Loader;
+import fr.theorigindev.shootcraft.utils.ItemBuilder;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,10 +15,13 @@ public class PlayerManager {
 
     private List<Player> players;
     private Map<Player, Integer> kills;
+    private Map<Player, Integer> deaths;
 
     public PlayerManager(){
         players = new ArrayList<>();
         kills = new HashMap<>();
+        deaths = new HashMap<>();
+
     }
 
     public void addPlayer(Player player){
@@ -23,6 +29,7 @@ public class PlayerManager {
 
             players.add(player);
             kills.putIfAbsent(player, 0);
+            deaths.putIfAbsent(player, 0);
 
         }else{
             /*
@@ -35,13 +42,33 @@ public class PlayerManager {
 
         players.remove(player);
         kills.remove(player);
+        deaths.remove(player);
 
+    }
+
+    public void respawn(Player player){
+        Loader.getInstance().getGameManager().getArena().randomTeleport(player);
+    }
+
+    public void killPlayer(Player victim, Player shooter) {
+        respawn(victim);
+
+        deaths.put(victim, deaths.getOrDefault(victim, 0) + 1);
+        kills.put(shooter, kills.getOrDefault(shooter, 0) + 1);
+    }
+
+    public void finish() {
+        for (Player player : players){
+            // teleport spawn
+        }
     }
 
     public void giveAllPlayersKits() {
 
+        ItemStack stick = ItemBuilder.createShootCraftStick();
         for (Player player : players){
-
+            player.getInventory().clear();
+            player.getInventory().addItem(stick);
         }
     }
 
@@ -59,10 +86,7 @@ public class PlayerManager {
         return kills;
     }
 
-
-    public void finish() {
-        for (Player player : players){
-            // teleport spawn
-        }
+    public Map<Player, Integer> getDeaths() {
+        return deaths;
     }
 }
