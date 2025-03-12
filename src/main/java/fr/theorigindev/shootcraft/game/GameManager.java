@@ -1,6 +1,7 @@
 package fr.theorigindev.shootcraft.game;
 
 import fr.theorigindev.shootcraft.Loader;
+import fr.theorigindev.shootcraft.utils.GameConfig;
 import fr.theorigindev.shootcraft.utils.MessageUtils;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -15,12 +16,8 @@ public class GameManager {
     private GameState gameState;
 
     public GameManager(){
-        World world = Loader.getInstance().getServer().getWorld("world");
-        List<int[]> positions = new ArrayList<>();
-        positions.add(new int[]{0, 0, 0});
-        positions.add(new int[]{0, 0, 0});
 
-        arena = new Arena(new Location(world,0,0,0), new Location(world, 0, 0, 0), world, positions);
+        arena = new Arena(GameConfig.getInstance().getMinArea(), GameConfig.getInstance().getMaxArea(), GameConfig.getInstance().getGameWorld(), GameConfig.getInstance().getTeleportLocations());
         gameState = GameState.WAITING;
         playerManager = new PlayerManager();
 

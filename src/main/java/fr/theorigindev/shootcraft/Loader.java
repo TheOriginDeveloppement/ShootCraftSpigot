@@ -21,7 +21,7 @@ public class Loader extends JavaPlugin {
         gameManager = new GameManager();
 
         this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(gameManager), this);
-        this.getServer().getPluginManager().registerEvents(new ProjectileHitListener(gameManager), this);
+        this.getServer().getPluginManager().registerEvents(new ProjectileHitListener(), this);
         this.getServer().getPluginManager().registerEvents(new GameListener(gameManager), this);
 
         getCommand("startshootcraft").setExecutor(new StartShootCraftCommand(gameManager));

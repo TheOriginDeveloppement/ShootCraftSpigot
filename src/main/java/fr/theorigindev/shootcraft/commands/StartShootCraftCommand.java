@@ -2,6 +2,7 @@ package fr.theorigindev.shootcraft.commands;
 
 import fr.theorigindev.shootcraft.game.GameManager;
 import fr.theorigindev.shootcraft.game.GameState;
+import fr.theorigindev.shootcraft.utils.GameConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,8 +32,8 @@ public class StartShootCraftCommand implements CommandExecutor {
         }
 
         int playerCount = gameManager.getPlayerManager().getPlayers().size();
-        if (playerCount < 1) {
-            player.sendMessage("§cIl faut au moins 2 joueurs pour lancer une partie !");
+        if (playerCount < GameConfig.getInstance().getMinPlayersAllowed()) {
+            player.sendMessage("§cIl faut au moins " + GameConfig.getInstance().getMinPlayersAllowed() + " joueurs pour lancer une partie !");
             return true;
         }
 

@@ -1,0 +1,30 @@
+# Nom du monde où se déroule la partie
+world: "world"
+
+# Nom du spawn (juste un identifiant textuel pour référence)
+spawn-name: "world"
+
+# Nombre minimum et maximum de joueurs par partie
+players:
+  min: 2
+  max: 2
+
+# Coordonnées minimales et maximales de l’arène
+arena:
+  min:
+    x: -96
+    y: 64
+    z: 273
+  max:
+    x: -172
+    y: 100
+    z: 214
+
+# Liste de coordonnées de téléportation (doit correspondre au nombre max de joueurs)
+teleport-locations:
+  - x: -166
+    y: 71
+    z: 228
+  - x: -166
+    y: 71
+    z: 228

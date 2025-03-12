@@ -1,5 +1,6 @@
 package fr.theorigindev.shootcraft.game;
 
+import fr.theorigindev.shootcraft.Loader;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -11,9 +12,9 @@ public class Arena {
     private Location min;
     private Location max;
     private final World world;
-    private final List<int[]> positions;
+    private final List<Location> positions;
 
-    public Arena(Location min, Location max, World world, List<int[]> positions){
+    public Arena(Location min, Location max, World world, List<Location> positions){
         this.min = min;
         this.max = max;
         this.world = world;
@@ -21,22 +22,20 @@ public class Arena {
     }
 
     public void teleportPlayers(List<Player> players){
-        /*
-            le nb de position == aux nb de players except si no
-         */
 
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
-            int[] position = positions.get(i);
-            player.teleport(new Location(world, position[0], position[1], position[2]));
+            Location position = positions.get(i);
+
+            player.teleport(position);
         }
     }
 
     public void randomTeleport(Player player) {
         Random rand = new Random();
-        int[] randomPos = positions.get(rand.nextInt(positions.size()));
+        Location randomPos = positions.get(rand.nextInt(positions.size()));
 
-        player.teleport(new Location(world, randomPos[0], randomPos[1], randomPos[2]));
+        player.teleport(randomPos);
     }
 
     public boolean isInArena(Location loc) {

@@ -2,6 +2,7 @@ package fr.theorigindev.shootcraft.game;
 
 import fr.theorigindev.shootcraft.Loader;
 import fr.theorigindev.shootcraft.utils.ItemBuilder;
+import fr.theorigindev.shootcraft.utils.MessageUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -53,6 +54,7 @@ public class PlayerManager {
     public void killPlayer(Player victim, Player shooter) {
         respawn(victim);
 
+        MessageUtils.broadcast(victim.getDisplayName()+" a été tué par "+shooter.getDisplayName());
         deaths.put(victim, deaths.getOrDefault(victim, 0) + 1);
         kills.put(shooter, kills.getOrDefault(shooter, 0) + 1);
     }
