@@ -1,6 +1,6 @@
 package fr.theorigindev.shootcraft.listeners;
 
-import fr.theorigindev.shootcraft.game.GameManager;
+import fr.theorigindev.shootcraft.game.QueueManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -8,21 +8,17 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class GameListener implements Listener {
 
-    private GameManager gameManager;
 
-    public GameListener(GameManager gameMgr){
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
 
-        this.gameManager = gameMgr;
+        QueueManager.giveJoinItemsQueue(event.getPlayer());
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
+    public void onQuit(PlayerQuitEvent event) {
 
-        gameManager.getPlayerManager().addPlayer(event.getPlayer());
-    }
+        QueueManager.leaveQueue(event.getPlayer());
 
-    @EventHandler
-    public void onQuit(PlayerQuitEvent event){
-        gameManager.getPlayerManager().removePlayer(event.getPlayer());
     }
 }

@@ -59,6 +59,15 @@ public class GameConfig {
         return config.getInt("players.min", 2);
     }
 
+    public int getCountdown() {
+        return config.getInt("countdown", 30);
+    }
+
+    public int getTimer() {
+        return config.getInt("timer", 300);
+    }
+
+
     public int getMaxPlayersAllowed(){
         return config.getInt("players.max", 8);
     }

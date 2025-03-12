@@ -34,4 +34,21 @@ public class ItemBuilder {
                 .setDisplayName("§6Lanceur de Feu")
                 .addEnchantment(Enchantment.DURABILITY, 1)
                 .build();
-    }}
+    }
+
+    public static ItemStack createQueueJoinItem() {
+        return new ItemBuilder(Material.GOLD_INGOT)
+                .setDisplayName("§2Rejoindre la file d'attente")
+                .build();
+    }
+
+    public static ItemStack createQueueLeaveItem() {
+        return new ItemBuilder(Material.REDSTONE)
+                .setDisplayName("§cQuitter la file d'attente")
+                .build();
+    }
+
+
+}
+
+

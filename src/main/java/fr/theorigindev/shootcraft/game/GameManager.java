@@ -1,13 +1,10 @@
 package fr.theorigindev.shootcraft.game;
 
+import com.avaje.ebeaninternal.server.core.Message;
 import fr.theorigindev.shootcraft.Loader;
 import fr.theorigindev.shootcraft.utils.GameConfig;
 import fr.theorigindev.shootcraft.utils.MessageUtils;
-import org.bukkit.Location;
-import org.bukkit.World;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
 
@@ -15,15 +12,19 @@ public class GameManager {
     private PlayerManager playerManager;
     private GameState gameState;
 
-    public GameManager(){
+
+    public GameManager() {
 
         arena = new Arena(GameConfig.getInstance().getMinArea(), GameConfig.getInstance().getMaxArea(), GameConfig.getInstance().getGameWorld(), GameConfig.getInstance().getTeleportLocations());
         gameState = GameState.WAITING;
         playerManager = new PlayerManager();
-
+        new GameLoop(this);
     }
 
-    public void startGame(){
+
+
+
+    public void startGame() {
         gameState = GameState.RUNNING;
 
         arena.teleportPlayers(playerManager.getPlayers());
@@ -31,9 +32,13 @@ public class GameManager {
         MessageUtils.broadcast("La partie commence ! Utilisez votre bâton pour tirer ! ");
     }
 
-    public boolean checkGameEnd(){
-        return playerManager.getPlayers().size() < 2;
+
+
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
+
 
     public PlayerManager getPlayerManager() {
         return playerManager;
@@ -47,9 +52,8 @@ public class GameManager {
         return arena;
     }
 
-    public void endGame(){
+    public void endGame() {
         gameState = GameState.FINISHED;
-        //aff le classement
         playerManager.finish();
     }
 }

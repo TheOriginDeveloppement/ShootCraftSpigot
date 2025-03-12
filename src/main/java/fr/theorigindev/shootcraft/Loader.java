@@ -1,6 +1,5 @@
 package fr.theorigindev.shootcraft;
 
-import fr.theorigindev.shootcraft.commands.StartShootCraftCommand;
 import fr.theorigindev.shootcraft.game.GameManager;
 import fr.theorigindev.shootcraft.listeners.GameListener;
 import fr.theorigindev.shootcraft.listeners.PlayerInteractListener;
@@ -22,9 +21,8 @@ public class Loader extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(gameManager), this);
         this.getServer().getPluginManager().registerEvents(new ProjectileHitListener(), this);
-        this.getServer().getPluginManager().registerEvents(new GameListener(gameManager), this);
+        this.getServer().getPluginManager().registerEvents(new GameListener(), this);
 
-        getCommand("startshootcraft").setExecutor(new StartShootCraftCommand(gameManager));
 
         this.getServer().getLogger().info("Shootcraft Enabled");
 

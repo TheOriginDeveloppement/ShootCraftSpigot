@@ -2,7 +2,3 @@ name: ShootCraft
 version: 1.0.0
 main: fr.theorigindev.shootcraft.Loader
 api-version: 1.13
-commands:
-  startshootcraft:
-    description: Lance une partie de shootcraft (dev)
-    usage: /<command>

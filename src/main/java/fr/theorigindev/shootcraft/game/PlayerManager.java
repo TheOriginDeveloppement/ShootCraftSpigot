@@ -1,6 +1,7 @@
 package fr.theorigindev.shootcraft.game;
 
 import fr.theorigindev.shootcraft.Loader;
+import fr.theorigindev.shootcraft.utils.GameConfig;
 import fr.theorigindev.shootcraft.utils.ItemBuilder;
 import fr.theorigindev.shootcraft.utils.MessageUtils;
 import org.bukkit.entity.Player;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PlayerManager {
 
@@ -28,22 +28,32 @@ public class PlayerManager {
     public void addPlayer(Player player){
         if(!players.contains(player)){
 
+
             players.add(player);
             kills.putIfAbsent(player, 0);
             deaths.putIfAbsent(player, 0);
 
+            if (Loader.getInstance().getGameManager().getGameState() == GameState.WAITING) {
+                MessageUtils.broadcast(player.getDisplayName() + " a rejoint la partie ");
+            }
         }else{
-            /*
-                TODO throw joueur déjà ajouté
-             */
+            throw new IllegalStateException("Ce joueur a déjà ajouté à la liste");
         }
     }
 
     public void removePlayer(Player player){
 
-        players.remove(player);
-        kills.remove(player);
-        deaths.remove(player);
+        if (players.contains(player)) {
+
+
+            players.remove(player);
+            kills.remove(player);
+            deaths.remove(player);
+
+            if (Loader.getInstance().getGameManager().getGameState() == GameState.WAITING) {
+                MessageUtils.broadcast(player.getDisplayName() + " a quitté la partie ");
+            }
+        }
 
     }
 
@@ -61,7 +71,7 @@ public class PlayerManager {
 
     public void finish() {
         for (Player player : players){
-            // teleport spawn
+            player.teleport(GameConfig.getInstance().getSpawnWorld().getSpawnLocation());
         }
     }
 

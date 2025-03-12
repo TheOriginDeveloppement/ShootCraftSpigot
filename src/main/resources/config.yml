@@ -9,6 +9,12 @@ players:
   min: 2
   max: 2
 
+#Temps avant que la partie se lance (en secondes)
+countdown: 30
+
+#Temps maximal de la partie (en secondes)
+timer: 120
+
 # Coordonnées minimales et maximales de l’arène
 arena:
   min:

@@ -5,7 +5,6 @@ import net.minecraft.server.v1_8_R3.EntityArrow;
 import net.minecraft.server.v1_8_R3.WorldServer;
 import org.bukkit.Effect;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -44,7 +43,7 @@ public class CustomProjectile {
         entityArrow.setInvisible(true);
 
         Vector direction = shooter.getEyeLocation().getDirection().normalize();
-        double speedMultiplier = 3.0;
+        double speedMultiplier = 20.0;
         entityArrow.motX = direction.getX() * speedMultiplier;
         entityArrow.motY = direction.getY() * speedMultiplier;
         entityArrow.motZ = direction.getZ() * speedMultiplier;
@@ -90,10 +89,6 @@ public class CustomProjectile {
             projectileOwners.remove(entityArrow);
         }
         isRunning = false;
-    }
-
-    public Player getShooter() {
-        return shooter;
     }
 
     public static Player getShooter(EntityArrow arrow) {
