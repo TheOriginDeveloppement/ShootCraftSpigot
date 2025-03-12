@@ -7,7 +7,7 @@ spawn-name: "world"
 # Nombre minimum et maximum de joueurs par partie
 players:
   min: 2
-  max: 2
+  max: 5
 
 #Temps avant que la partie se lance (en secondes)
 countdown: 30
@@ -18,19 +18,28 @@ timer: 120
 # Coordonnées minimales et maximales de l’arène
 arena:
   min:
-    x: -96
-    y: 64
-    z: 273
+    x: 55
+    y: 4
+    z: 303
   max:
-    x: -172
-    y: 100
-    z: 214
+    x: 128
+    y: 33
+    z: 341
 
 # Liste de coordonnées de téléportation (doit correspondre au nombre max de joueurs)
 teleport-locations:
-  - x: -166
-    y: 71
-    z: 228
-  - x: -166
-    y: 71
-    z: 228
+  - x: 113
+    y: 4
+    z: 315
+  - x: 71
+    y: 4
+    z: 332
+  - x: 63
+    y: 4
+    z: 305
+  - x: 67
+    y: 4
+    z: 326
+  - x: 71
+    y: 4
+    z: 312
