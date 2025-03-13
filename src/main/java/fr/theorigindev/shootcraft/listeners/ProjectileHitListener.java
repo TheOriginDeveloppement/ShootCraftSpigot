@@ -33,7 +33,7 @@ public class ProjectileHitListener implements Listener {
 
         Player shooter = CustomProjectile.getShooter(nmsArrow);
 
-        if (shooter == null) {
+        if (shooter == null || shooter.getEntityId() == event.getEntity().getEntityId()) {
             return;
         }
 

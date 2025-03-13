@@ -64,19 +64,8 @@ public class PlayerInteractListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerPlaceBlock(BlockPlaceEvent event) {
-        switch (event.getItemInHand().getItemMeta().getDisplayName()) {
-            case "§6Lanceur de Feu":
-            case "§2Rejoindre la file d'attente":
-            case "§cQuitter la file d'attente":
-                event.setCancelled(true);
-                break;
-        }
-    }
-
-    @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
-        switch (event.getPlayer().getItemInHand().getItemMeta().getDisplayName()) {
+        switch (event.getItemDrop().getItemStack().getItemMeta().getDisplayName()) {
             case "§6Lanceur de Feu":
             case "§2Rejoindre la file d'attente":
             case "§cQuitter la file d'attente":

@@ -74,7 +74,14 @@ public class CustomProjectile {
                 Location loc = new Location(shooter.getWorld(),
                         entityArrow.locX, entityArrow.locY, entityArrow.locZ);
 
-                shooter.getWorld().playEffect(loc, Effect.FIREWORKS_SPARK, 0);
+                for (int i = 0; i < 5; i++) {
+                    shooter.getWorld().playEffect(loc.clone().add(
+                                    Math.random() * 0.1 - 0.05,
+                                    Math.random() * 0.1 - 0.05,
+                                    Math.random() * 0.1 - 0.05),
+                            Effect.MAGIC_CRIT, 0);
+                }
+
             }
         };
 
