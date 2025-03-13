@@ -75,6 +75,7 @@ public class PlayerManager {
         for (Player player : GameConfig.getInstance().getGameWorld().getPlayers()){
             player.teleport(GameConfig.getInstance().getSpawnWorld().getSpawnLocation());
             removePlayer(player);
+            QueueManager.giveJoinItemsQueue(player);
         }
     }
 
